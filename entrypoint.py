@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+from dotenv import load_dotenv
+import os
 
 class PerBiblioteca(BaseModel):
     ID:str
@@ -12,11 +14,15 @@ class Lib(BaseModel):
     NOMBRE:str
     FECHA:str
      
-
+load_dotenv()
+NAME = os.getenv("NOMBRE")
+VERSION = os.getenv("VERSION")
+DESCRIPTION = os.getenv("DESCRIPTION")
     
 app = FastAPI(
-    title = 'Server',
-    version = 'v0.0.5'
+    title = NAME,
+    version = VERSION,
+    description = DESCRIPTION
 )
 
 biblioteca = {}
